@@ -1,0 +1,25 @@
+{
+    "Name":"Nombre",
+    "Email":"Correo electrónico",
+    "Password":"Contraseña",
+    "Confirm Password":"Confirme contraseña",
+    "Already registered?":"¿Ya está registrado?",
+    "Register":"Registrarse",
+    "Log in":"Iniciar sesión",
+    "Remember me":"Recordarme",
+    "Forgot your password?":"¿Olvidó su contraseña?",
+    "You're logged in!":"Está registrado",
+    "Dashboard":"Inicio",
+    "Profile":"Perfil",
+    "Log Out":"Salir",
+    "Save":"Guardar",
+    "Profile Information":"Información del perfil",
+    "Update your account's profile information and email address.":"Actualice la información personal de su cuenta.",
+    "Update Password":"Actualizar contraseña",
+    "Ensure your account is using a long, random password to stay secure.":"Asegure su cuenta con una contraseña larga y no predecible.",
+    "Current Password":"Contraseña actual",
+    "New Password":"Nueva contraseña",
+    "Delete Account":"Borrar cuenta",
+    "Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.":"Una vez borre su cuenta, todos los datos almacenados serán borrados permanentemente. Por favor, si quiere aseguar cualquier dato, descárgueselo."
+    
+}
