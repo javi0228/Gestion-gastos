@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'income',
     ];
 
     /**
@@ -41,4 +42,34 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // Get all menages that user has
+    public function menages()
+    {
+        return $this->belongsToMany(Menage::class, 'user_menage');
+    }
+
+    // Get all expenses that user has done
+    function expenses()
+    {
+        return $this->hasMany(Expense::class);
+    }
+
+    // Get invitations that are not accepted
+    public function invitations()
+    {
+        return $this->hasMany(Invitation::class, 'to', 'id')->where('accepted', '=', 0);
+    }
+
+    
+    /**
+     * Function to create an expense
+     * 
+     * @param array $expenseData
+     * Expense data to create it
+     */
+    public function addExpense($expenseData)
+    {
+        return $this->expenses()->create($expenseData);
+    }
 }

@@ -3,10 +3,8 @@
 namespace Database\Seeders;
 
 use Hash;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 
 class UserSeeder extends Seeder
 {
@@ -19,6 +17,14 @@ class UserSeeder extends Seeder
             'name' => 'Javi',
             'email' => 'javirodriguezbnk@gmail.com',
             'password' => Hash::make('28febrero'),
+            'income' => 1000.00,
+        ]);
+
+        DB::table('users')->insert([
+            'name' => 'Nerea',
+            'email' => 'nerealop10@gmail.com',
+            'password' => Hash::make('chato2012'),
+            'income' => 600.00,
         ]);
     }
 }

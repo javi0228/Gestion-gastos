@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
+            $table->unsignedFloat('income')->comment('user´s monthly income');
             $table->rememberToken();
             $table->timestamps();
         });
