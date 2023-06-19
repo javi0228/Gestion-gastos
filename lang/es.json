@@ -56,5 +56,10 @@
     "Amount":"Total",
     "Expense added.": "Gasto añadido.",
     "User not found.": "Usuario  no encontrado.",
-    "Enter the expense's total amount.":"Ingrese la cantidad total del gasto."
+    "Enter the expense's total amount.":"Ingrese la cantidad total del gasto.",
+    "Expenses in the current month.":"Gastos de este mes.",
+    "chat":"Chat de",
+    "You":"Tu",
+    "Participants":"Participantes",
+    "Your message...":"Tu mensaje..."
 }

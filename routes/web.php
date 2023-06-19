@@ -33,6 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/menages', [MenagesController::class, 'index'])->name('menages.index');
     Route::post('/menages', [MenagesController::class, 'store'])->name('menages.store');
     Route::post('/AddExpense/{id}', [MenagesController::class, 'addUserExpense'])->name('menages.addUserExpense');
+    Route::get('/menageChat/{id}', [MenagesController::class, 'chat'])->name('menages.chat');
     
     // Invitations route
     Route::post('/inviteUser/{id}', [InvitationsController::class, 'store'])->name('invitation.invite');

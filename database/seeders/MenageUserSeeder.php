@@ -17,5 +17,10 @@ class MenageUserSeeder extends Seeder
             'user_id'=>1,
             'menage_id'=>1
         ]);
+
+        DB::table('user_menage')->insert([
+            'user_id'=>2,
+            'menage_id'=>1
+        ]);
     }
 }

@@ -16,7 +16,10 @@ class Menage extends Model
         'color',
     ];
 
-    // Get all users from the menage
+    /**
+     * Get all users from the menage  
+     * 
+     * */ 
     public function users()
     {
         return $this->belongsToMany(User::class,'user_menage');
@@ -29,7 +32,7 @@ class Menage extends Model
     }
 
     /**
-     * @return int Menage's total incomes
+     * @return int Menage's total incomes in current month
      */
     public function totalIncome()
     {
@@ -37,10 +40,17 @@ class Menage extends Model
     }
 
     /**
-     * @return int Menage's total expenses
+     * Menage chat
+     */
+    public function chat() {
+        return $this->hasOne(MenageChat::class);
+    }
+
+    /**
+     * @return int Menage's total expenses in current month
      */
     public function totalExpenses()
     {
-        return $this->hasMany(Expense::class)->sum('amount');
+        return $this->hasMany(Expense::class)->whereMonth('created_at','=',date('m'))->sum('amount');
     }
 }

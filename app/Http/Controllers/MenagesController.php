@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Invitation;
 use App\Models\Menage;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
 class MenagesController extends Controller
@@ -20,7 +17,6 @@ class MenagesController extends Controller
 
         // Get user invitations
         $invitations = Auth::user()->invitations;
-
         return view('menages.index', ['menages' => $menages, 'invitations' => $invitations]);
     }
 
@@ -40,6 +36,23 @@ class MenagesController extends Controller
 
         // Redirect the user to index
         return back();
+    }
+
+    /**
+     * Show the menage chat
+     * 
+     * @param int $id
+     *  Menage id
+     *  
+     * @return view Returns the view that contains menage chat
+     */
+    public function chat($id): View
+    {
+
+        // Get menage to manage its chat
+        $menage = Menage::find($id);
+        $users = $menage->users;
+        return view('menages.inhabitants-chat', ['menage' => $menage, 'users' => $users]);
     }
 
     public function addUserExpense(Request $request, $id)

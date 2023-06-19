@@ -50,15 +50,23 @@ class User extends Authenticatable
     }
 
     // Get all expenses that user has done
-    function expenses()
+    public function expenses()
     {
-        return $this->hasMany(Expense::class);
+        return $this->hasMany(Expense::class)->sum('amount');
     }
 
     // Get invitations that are not accepted
     public function invitations()
     {
         return $this->hasMany(Invitation::class, 'to', 'id')->where('accepted', '=', 0);
+    }
+
+    /**
+     * @return int All expenses from the user in current month
+     */
+    public function currentMonthExpenses()
+    {
+        return $this->hasMany(Expense::class)->whereMonth('created_at','=',date('m'))->sum('amount');
     }
 
     

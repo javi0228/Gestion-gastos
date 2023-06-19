@@ -221,10 +221,11 @@
                                                                 </div> --}}
                                                                 {{-- User name-email --}}
                                                                 <div class="col-span-2">
-                                                                    <p
-                                                                        class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                                                    <a
+                                                                    href="{{route('menages.chat',$menage->id)}}"
+                                                                        class="text-sm hover:underline font-medium text-gray-900 truncate dark:text-white">
                                                                         {{ $user->name }}
-                                                                    </p>
+                                                                    </a>
                                                                     <p
                                                                         class="text-sm w-1/2 text-gray-500 truncate dark:text-gray-400">
                                                                         {{ $user->email }}
@@ -238,7 +239,7 @@
                                                                 {{-- User name expenses --}}
                                                                 <div
                                                                     class="justify-self-end text-base font-semibold text-gray-900 dark:text-white">
-                                                                    {{ $user->expenses()->sum('amount') }}€
+                                                                    {{ $user->currentMonthExpenses() }}€
                                                                 </div>
                                                             </div>
                                                         </li>
