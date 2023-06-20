@@ -6,9 +6,9 @@
     </div>
     <div class="chat-header">
         {{ $user }}
-        <time class="text-xs opacity-50">{{ $sentAt }}</time>
+        <time class="text-xs opacity-50 mx-1">{{ $sentAt }}</time>
     </div>
-    <div class="chat-bubble">{{ $slot }}</div>
+    <div class="chat-bubble ">{{ $slot }}</div>
     {{-- <div class="chat-footer opacity-50">
         {{$sentAt}}
     </div> --}}

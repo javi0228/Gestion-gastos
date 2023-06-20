@@ -1,18 +1,20 @@
-<div class="p-8 dark:bg-gray-600 bg-neutral-200 rounded-md grid grid-rows-5 col-span-2 max-h-96">
+<div class="p-8 dark:bg-gray-600 bg-neutral-200 rounded-md grid grid-rows-5 col-span-2 max-h-[30rem] ">
     {{-- Messages container --}}
-    <div wire:poll.visible.750ms="getMessages" class="overflow-auto row-span-4 max-h-full">
-        {{-- Received messages --}}
-        @foreach ($receivedMessages as $received)
-            <x-chat.message-start :user="$received->user->name" :sentAt="$received->created_at">
-                {{ $received->message }}
-            </x-chat.message-start>
+    <div wire:poll.visible.750ms="getMessages" class="overflow-y-auto overflow-x-hidden row-span-4 p-2">
+        @foreach ($messages as $message)
+            {{-- Sent messages --}}
+            @if ($message->user_id == Auth::user()->id)
+                <x-chat.message-end :sentAt="$message->created_at">
+                    {{ $message->message }}
+                </x-chat.message-end>
+            @else
+                {{-- Received messages --}}
+                <x-chat.message-start :user="$message->user->name" :sentAt="$message->created_at">
+                    {{ $message->message }}
+                </x-chat.message-start>
+            @endif
         @endforeach
         {{-- Sent messages --}}
-        @foreach ($sentMessages as $sent)
-            <x-chat.message-end sentAt="12:23">
-                {{ $sent->message }}
-            </x-chat.message-end>
-        @endforeach
     </div>
     {{-- Message input --}}
     <div class="mt-3 self-end">

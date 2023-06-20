@@ -57,7 +57,6 @@
                         </button>
                     </x-slot>
 
-                    <x-slot name="content">
                         <x-dropdown-link :href="route('profile.edit')">
                             {{ __('Profile') }}
                         </x-dropdown-link>
@@ -72,7 +71,6 @@
                                 {{ __('Log Out') }}
                             </x-dropdown-link>
                         </form>
-                    </x-slot>
                 </x-dropdown> --}}
             </div>
 

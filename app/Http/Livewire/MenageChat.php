@@ -19,11 +19,11 @@ class MenageChat extends Component
     /**
      * List of received messages in the chat
      */
-    public $receivedMessages;
+    // public $receivedMessages;
     /**
      * List of sent messages in the chat
      */
-    public $sentMessages;
+    public $messages;
     /**
      * Chat instance
      */
@@ -48,8 +48,7 @@ class MenageChat extends Component
     public function getMessages()
     {
         // Get received and sent messages
-        $this->receivedMessages = $this->menage->chat->messages()->where('user_id', '!=', Auth::user()->id)->get();
-        $this->sentMessages = $this->menage->chat->messages()->where('user_id', '=', Auth::user()->id)->get();
+        $this->messages = $this->menage->chat->messages()->orderBy('created_at')->get();
     }
 
     public function render()
