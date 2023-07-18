@@ -1,4 +1,4 @@
-<div class="chat chat-end w-96">
+<div class="chat chat-end">
     <div class="chat-image avatar">
         <div class="w-10 rounded-full">
             <img src="{{ asset('assets/img/users/default-user-profile-picture.jpg') }}" />

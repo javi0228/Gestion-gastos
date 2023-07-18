@@ -47,8 +47,14 @@ class MenageChat extends Component
      */
     public function getMessages()
     {
-        // Get received and sent messages
+        // Aux variable to check new messages
+        $messagesAux = $this->messages;
         $this->messages = $this->menage->chat->messages()->orderBy('created_at')->get();
+
+        // check if there are new messages
+        if ($messagesAux)
+            if (count($this->messages) != count($messagesAux))
+                $this->emit('message-sended');
     }
 
     public function render()
@@ -66,5 +72,6 @@ class MenageChat extends Component
 
             unset($this->message);
         }
+
     }
 }

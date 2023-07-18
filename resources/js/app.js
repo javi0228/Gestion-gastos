@@ -58,3 +58,16 @@ themeToggleBtn.addEventListener("click", function () {
         }
     }
 });
+
+const messagesContainer = document.getElementById("messages-container");
+scrollToBottom();
+
+Livewire.on("message-sended", () => {
+    scrollToBottom();
+});
+
+// Control the messages container scroll to bottom
+function scrollToBottom() {
+    if (messagesContainer)
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+}
