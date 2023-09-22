@@ -24,7 +24,6 @@ class DatabaseSeeder extends Seeder
                 UserSeeder::class,
                 MenageSeeder::class,
                 MenageUserSeeder::class,
-                MenageChatSeeder::class,
                 ChatMessagesSeeder::class,
             ]
         );

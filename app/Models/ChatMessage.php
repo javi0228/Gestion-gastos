@@ -9,7 +9,7 @@ class ChatMessage extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'chat_id',
+        'menage_id',
         'user_id',
         'message',
         'read',
@@ -23,7 +23,8 @@ class ChatMessage extends Model
         return $this->belongsTo(MenageChat::class);
     }
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 }

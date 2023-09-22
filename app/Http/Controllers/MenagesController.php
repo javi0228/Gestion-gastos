@@ -41,23 +41,36 @@ class MenagesController extends Controller
     /**
      * Show the menage chat
      * 
-     * @param int $id
+     * @param Menage $id
      *  Menage id
      *  
      * @return view Returns the view that contains menage chat
      */
-    public function chat($id): View
+    public function chat(Menage $menage): View
     {
 
-        // Get menage to manage its chat
-        $menage = Menage::find($id);
+        // Get users to manage its chat
         $users = $menage->users;
         return view('menages.inhabitants-chat', ['menage' => $menage, 'users' => $users]);
     }
 
+    /**
+     * Show the menage expenses
+     * 
+     * @param Menage $menage
+     *  Menage id
+     *  
+     * @return view Returns the view that contains menage expenses
+     */
+    public function expenses(Menage $menage): View
+    {
+        return view('menages.expenses', ['menage' => $menage]);
+    }
+
     public function addUserExpense(Request $request, $id)
     {
-        if (Auth::user()->addExpense(['amount' => $request->amount, 'menage_id' => $id]))
+
+        if (Auth::user()->addExpense(['amount' => $request->amount, 'menage_id' => $id, 'description' => $request->description]))
             return back()->with('status', 'expenseAdded');
 
         return back();

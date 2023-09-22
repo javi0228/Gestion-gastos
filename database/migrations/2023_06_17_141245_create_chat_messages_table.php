@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('chat_messages', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('chat_id')->references('id')->on('menage_chats')->onDelete('cascade');
+            $table->foreignId('menage_id')->references('id')->on('menages')->onDelete('cascade');
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->text('message');
             $table->boolean('read')->default(false);

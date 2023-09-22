@@ -14,7 +14,7 @@ class ChatMessagesSeeder extends Seeder
     public function run(): void
     {
         DB::table('chat_messages')->insert([
-            'chat_id' => 1,
+            'menage_id' => 1,
             'user_id' => 1,
             'message' => 'holaa',
             'read' => false,
@@ -23,7 +23,7 @@ class ChatMessagesSeeder extends Seeder
         ]);
 
         DB::table('chat_messages')->insert([
-            'chat_id' => 1,
+            'menage_id' => 1,
             'user_id' => 2,
             'message' => 'adioos',
             'read' => false,

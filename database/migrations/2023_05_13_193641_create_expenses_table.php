@@ -18,6 +18,7 @@ return new class extends Migration {
             $table->foreignId('menage_id')->comment('menage that suffers the expense')
                 ->references('id')
                 ->on('menages')->onDelete('cascade');
+            $table->string('description')->nullable();
             $table->unsignedFloat('amount')->comment('total amount of expense');
             $table->timestamps();
 

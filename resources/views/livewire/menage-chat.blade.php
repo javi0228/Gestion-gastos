@@ -4,14 +4,14 @@
         @foreach ($messages as $message)
             {{-- Sent messages --}}
             @if ($message->user_id == Auth::user()->id)
-                <x-chat.message-end :sentAt="$message->created_at">
+                <x-menage.chat.message-end :sentAt="$message->created_at">
                     {{ $message->message }}
-                </x-chat.message-end>
+                </x-menage.chat.message-end>
             @else
                 {{-- Received messages --}}
-                <x-chat.message-start :user="$message->user->name" :sentAt="$message->created_at">
+                <x-menage.chat.message-start :user="$message->user->name" :sentAt="$message->created_at">
                     {{ $message->message }}
-                </x-chat.message-start>
+                </x-menage.chat.message-start>
             @endif
         @endforeach
         {{-- Sent messages --}}

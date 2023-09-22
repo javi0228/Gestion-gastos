@@ -25,10 +25,6 @@ class MenageChat extends Component
      */
     public $messages;
     /**
-     * Chat instance
-     */
-    public $chat;
-    /**
      * Message to send
      */
     public $message;
@@ -38,7 +34,6 @@ class MenageChat extends Component
         // Get menage of the chat and users from menage
         $this->menage = $menage;
         $this->users = $this->menage->users;
-        $this->chat = $this->menage->chat;
         $this->getMessages();
     }
 
@@ -49,7 +44,11 @@ class MenageChat extends Component
     {
         // Aux variable to check new messages
         $messagesAux = $this->messages;
-        $this->messages = $this->menage->chat->messages()->orderBy('created_at')->get();
+
+        $this->messages = $this->menage->chat ? $this->menage->chat()->orderBy('created_at')->get() : [];
+
+        // If there are received messages, mark them as read
+        $this->menage->markAsRead();
 
         // check if there are new messages
         if ($messagesAux)
@@ -64,14 +63,14 @@ class MenageChat extends Component
 
     public function sendMessage()
     {
-        if ($this->message) {
-            $this->chat->messages()->create([
+        if ($this->message)
+            // Create message on chat
+            $this->menage->chat()->create([
                 'user_id' => Auth::user()->id,
                 'message' => $this->message
             ]);
 
-            unset($this->message);
-        }
+        unset($this->message);
 
     }
 }

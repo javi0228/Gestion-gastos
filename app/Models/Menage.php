@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Events\MenageCreated;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,6 +16,10 @@ class Menage extends Model
         'address',
         'color',
     ];
+
+    public static function booted(){
+
+    }
 
     /**
      * Get all users from the menage  
@@ -43,7 +48,7 @@ class Menage extends Model
      * Menage chat
      */
     public function chat() {
-        return $this->hasOne(MenageChat::class);
+        return $this->hasMany(ChatMessage::class);
     }
 
     /**
@@ -52,5 +57,13 @@ class Menage extends Model
     public function totalExpenses()
     {
         return $this->hasMany(Expense::class)->whereMonth('created_at','=',date('m'))->sum('amount');
+    }
+
+     /**
+     * Mark received messages as read
+     */
+    public function markAsRead()
+    {
+        $this->chat()->where('user_id', '!=', auth()->user()->id)->update(['read' => true]);
     }
 }

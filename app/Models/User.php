@@ -43,7 +43,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    // Get all menages that user has
+    // Get all menages that user has done
     public function menages()
     {
         return $this->belongsToMany(Menage::class, 'user_menage');
@@ -52,7 +52,13 @@ class User extends Authenticatable
     // Get all expenses that user has done
     public function expenses()
     {
-        return $this->hasMany(Expense::class)->sum('amount');
+        return $this->hasMany(Expense::class);
+    }
+
+    // Get all expenses sum that user has done
+    public function expensesSumByMenage($menage_id)
+    {
+        return $this->hasMany(Expense::class)->where('menage_id', $menage_id)->sum('amount');
     }
 
     // Get invitations that are not accepted
@@ -62,14 +68,14 @@ class User extends Authenticatable
     }
 
     /**
+     * @param int $menage_id
      * @return int All expenses from the user in current month
      */
-    public function currentMonthExpenses()
+    public function currentMonthExpensesByMenage($menage_id)
     {
-        return $this->hasMany(Expense::class)->whereMonth('created_at','=',date('m'))->sum('amount');
+        return $this->hasMany(Expense::class)->where('menage_id',$menage_id)->whereMonth('created_at', '=', date('m'))->sum('amount');
     }
 
-    
     /**
      * Function to create an expense
      * 
