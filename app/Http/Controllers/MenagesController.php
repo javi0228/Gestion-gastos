@@ -16,7 +16,7 @@ class MenagesController extends Controller
         $menages = Auth::user()->menages()->distinct()->get();
 
         // Get user invitations
-        $invitations = Auth::user()->invitations;
+        $invitations = Auth::user()->unreadNotifications;
         return view('menages.index', ['menages' => $menages, 'invitations' => $invitations]);
     }
 

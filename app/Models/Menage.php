@@ -58,12 +58,4 @@ class Menage extends Model
     {
         return $this->hasMany(Expense::class)->whereMonth('created_at','=',date('m'))->sum('amount');
     }
-
-     /**
-     * Mark received messages as read
-     */
-    public function markAsRead()
-    {
-        $this->chat()->where('user_id', '!=', auth()->user()->id)->update(['read' => true]);
-    }
 }

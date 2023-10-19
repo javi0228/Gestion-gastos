@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Invitation;
+use App\Models\Menage;
 use App\Models\User;
+use App\Notifications\MenageInvitation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,29 +15,28 @@ class InvitationsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, $id)
+    public function store(Request $request, Menage $menage)
     {
         // Get invitated user
-        $invitated = User::where('email', $request->email)->get();
+        $invitated = User::where('email', $request->email)->first();
 
-        if (count($invitated) > 0) {
-            $user = $invitated[0];
-
-            // Create invitation
-            Invitation::create(['from' => Auth::user()->id, 'to' => $user->id, 'menage_id' => $id]);
+        if ($invitated) {
+            // Send notification
+            $invitated->notify(new MenageInvitation($menage, auth()->user()));
 
             return back()->with('status', 'user-invited');
         }
-        return back()->with('status','user-not-found');
+        return back()->with('status', 'user-not-found');
     }
 
 
-    public function accept(Invitation $invitation)
+    public function accept($notification_id)
     {
+        $notification = Auth::user()->notifications()->find($notification_id);
         // Associate the menage with the user
-        Auth::user()->menages()->attach($invitation->menage_id);
+        Auth::user()->menages()->attach($notification->data['menage_id']);
 
-        $invitation->delete();
+        $notification->markAsRead();
 
         return back()->with('status', 'accepted');
     }
@@ -43,9 +44,11 @@ class InvitationsController extends Controller
     /**
      * Remove the specified invitation from storage.
      */
-    public function reject(Invitation $invitation)
+    public function reject($notification_id)
     {
-        $invitation->delete();
+        $notification = Auth::user()->notifications()->find($notification_id);
+
+        $notification->markAsRead();
 
         return back()->with('status', 'rejected');
     }

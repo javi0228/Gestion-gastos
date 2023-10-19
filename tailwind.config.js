@@ -12,10 +12,9 @@ export default {
         "./vendor/wireui/wireui/resources/**/*.blade.php",
         "./vendor/wireui/wireui/ts/**/*.ts",
         "./vendor/wireui/wireui/src/View/**/*.php",
+        "./node_modules/tw-elements/dist/js/**/*.js",
     ],
-    presets:[
-        require('./vendor/wireui/wireui/tailwind.config.js')
-    ],
+    presets: [require("./vendor/wireui/wireui/tailwind.config.js")],
     darkMode: "class",
     theme: {
         extend: {
@@ -25,5 +24,10 @@ export default {
         },
     },
 
-    plugins: [forms, require("flowbite/plugin"),require("daisyui")],
+    plugins: [
+        forms,
+        require("flowbite/plugin"),
+        require("daisyui"),
+        require("tw-elements/dist/plugin.cjs"),
+    ],
 };

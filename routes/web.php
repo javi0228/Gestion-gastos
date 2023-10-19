@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\api\ExpenseController;
 use App\Http\Controllers\InvitationsController;
 use App\Http\Controllers\MenagesController;
 use App\Http\Controllers\ProfileController;
@@ -36,8 +37,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/menageChat/{menage}', [MenagesController::class, 'chat'])->name('menages.chat');
     Route::get('/menageExpenses/{menage}', [MenagesController::class, 'expenses'])->name('menages.expenses');
     
+    // Expenses routes
+    Route::get('expenses/{menage}',[ExpenseController::class,'expensesByMenage'])->name('expenses.index');
+
     // Invitations route
-    Route::post('/inviteUser/{id}', [InvitationsController::class, 'store'])->name('invitation.invite');
+    Route::post('/inviteUser/{menage}', [InvitationsController::class, 'store'])->name('invitation.invite');
     Route::get('/invitationReject/{invitation}', [InvitationsController::class, 'reject'])->name('invitation.reject');
     Route::get('/invitationAccept/{invitation}', [InvitationsController::class, 'accept'])->name('invitation.accept');
 

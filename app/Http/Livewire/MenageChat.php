@@ -12,18 +12,17 @@ class MenageChat extends Component
      * Chat users
      */
     public $users;
+
     /**
      * Chat's menage
      */
     public $menage;
-    /**
-     * List of received messages in the chat
-     */
-    // public $receivedMessages;
+    
     /**
      * List of sent messages in the chat
      */
     public $messages;
+    
     /**
      * Message to send
      */
@@ -47,9 +46,6 @@ class MenageChat extends Component
 
         $this->messages = $this->menage->chat ? $this->menage->chat()->orderBy('created_at')->get() : [];
 
-        // If there are received messages, mark them as read
-        $this->menage->markAsRead();
-
         // check if there are new messages
         if ($messagesAux)
             if (count($this->messages) != count($messagesAux))
@@ -71,6 +67,5 @@ class MenageChat extends Component
             ]);
 
         unset($this->message);
-
     }
 }
