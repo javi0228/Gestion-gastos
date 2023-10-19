@@ -9,12 +9,21 @@ class Expense extends Model
 {
     use HasFactory;
 
-    protected $fillable=[
+    protected $fillable = [
         'user_id',
         'menage_id',
         'description',
         'amount',
     ];
+
+    // /**
+    //  * The attributes that should be cast.
+    //  *
+    //  * @var array
+    //  */
+    // protected $casts = [
+    //     'created_at' => 'datetime:d-m-Y',
+    // ];
 
     // Get the user who did the expense
     public function user()

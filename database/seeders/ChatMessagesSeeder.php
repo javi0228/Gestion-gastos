@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use DB;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class ChatMessagesSeeder extends Seeder
@@ -17,7 +16,6 @@ class ChatMessagesSeeder extends Seeder
             'menage_id' => 1,
             'user_id' => 1,
             'message' => 'holaa',
-            'read' => false,
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -26,7 +24,6 @@ class ChatMessagesSeeder extends Seeder
             'menage_id' => 1,
             'user_id' => 2,
             'message' => 'adioos',
-            'read' => false,
             'created_at' => now(),
             'updated_at' => now(),
         ]);

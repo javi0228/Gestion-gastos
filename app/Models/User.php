@@ -61,11 +61,6 @@ class User extends Authenticatable
         return $this->hasMany(Expense::class)->where('menage_id', $menage_id)->sum('amount');
     }
 
-    // Get invitations that are not accepted
-    public function invitations()
-    {
-        return $this->hasMany(Invitation::class, 'to', 'id')->where('accepted', '=', 0);
-    }
 
     /**
      * @param int $menage_id

@@ -12,7 +12,6 @@ class ChatMessage extends Model
         'menage_id',
         'user_id',
         'message',
-        'read',
     ];
 
     /**

@@ -19,7 +19,7 @@
                  <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">
                      {{ __('Invite user') }}</h3>
                  <form class="space-y-6 group" novalidate
-                     action="{{ route('invitation.invite', ['id' => $menage->id]) }}" method="post">
+                     action="{{ route('invitation.invite', ['menage' => $menage->id]) }}" method="post">
                      @csrf
                      {{-- Email input --}}
                      <div>
